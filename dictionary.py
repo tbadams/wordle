@@ -1,4 +1,4 @@
-vowels = ['a', 'e', 'i', 'o', 'u','y', 'h', 'r', 'l']
+vowels = ['a', 'e', 'i', 'o', 'u','y']
 
 input = open("words.txt", "r")
 words = input.read().splitlines()
@@ -20,6 +20,7 @@ with open('counts1.txt', 'w') as f:
 counts_2 = list(sorted([(key, value) for (key,value) in counts.items() if len(key) == 2], key=lambda x: x[1], reverse = True))
 
 with open('counts2.txt', 'w') as f:
+    print("2 letter blends, no vowels:")
     for line in [f"{kv[0]}:{kv[1]}" for kv in counts_2]:
         f.write(f"{line}\n")
         if not any(i in vowels for i in line):

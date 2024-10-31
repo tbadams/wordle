@@ -1,4 +1,13 @@
-vowels = ['a', 'e', 'i', 'o', 'u','y']
+from typing import Optional
+
+vowels = ['a', 'e', 'i', 'o', 'u']
+vowels_and_y = vowels + ['y']
+
+def contains_no(substr:str, targets) -> bool:
+    return not any(i in targets for i in substr)
+
+def len_is(substr:str, length:int) -> bool:
+    return len(substr) == length
 
 def present_count(count_dict, filter_fun):
     return list(
@@ -17,7 +26,7 @@ input = open("words.txt", "r")
 words = input.read().splitlines()
 counts = {}
 for word in words:
-    last_char = None
+    last_char: Optional[str] = None
     for char in word:
         counts[char] = counts.get(char, 0) + 1
         if last_char:
@@ -36,6 +45,3 @@ with open('counts2.txt', 'w') as f:
         f.write(f"{line}\n")
         if not any(i in vowels for i in line):
             print(line)
-
-
-
